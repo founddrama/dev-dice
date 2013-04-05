@@ -3,11 +3,13 @@ var __ = require('underscore');
 var dataOptions = [
       'CouchDB',
       'Datomic',
-      'FileMaker',
+      'FileMaker Pro',
+      'Infobright',
       'MongoDB',
       'MySQL',
       'PostgreSQL',
-      'Redis'
+      'Redis',
+      'SQLite'
     ],
     backEndOptions = [
       'ASP.NET MVC',
@@ -23,12 +25,29 @@ var dataOptions = [
       'Scala/Play'
     ],
     frontEndOptions = [
+      'AngularJS',
+      'Backbone.js',
+      'Batman.js',
+      'Closure',
       'dojo',
       'ExtJS',
+      'GWT',
       'jQuery',
+      'Kendo UI',
+      'KnockoutJS',
       'MooTools',
       'Prototype',
-      'YUI'
+      'YUI',
+      'Zepto'
+    ],
+    vcsOptions = [
+      'Bazaar',
+      'CVS',
+      'Git',
+      'Mercurial',
+      'Perforce',
+      'Subversion',
+      'Visual SourceSafe'
     ];
 
 function Die(options) {
@@ -42,7 +61,8 @@ Die.prototype = {
   }
 };
 
-exports.Die = Die;
-exports.backEnd = backEndOptions;
+exports.Die      = Die;
+exports.backEnd  = backEndOptions;
 exports.frontEnd = frontEndOptions;
-exports.db = dataOptions;
+exports.db       = dataOptions;
+exports.vcs      = vcsOptions;

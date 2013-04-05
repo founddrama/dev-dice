@@ -1,26 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href='http://fonts.googleapis.com/css?family=Six+Caps' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='/css/screen.css' />
   </head>
-  <body>
+  <body data-ng-controller="DiceController">
     <h1><%= title %></h1>
-    <table>
-      <thead>
-        <tr>
-          <td>DB</td>
-          <td>Back-End</td>
-          <td>Front-End</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= db %></td>
-          <td><%= backEnd %></td>
-          <td><%= frontEnd %></td>
-        </tr>
-      </tbody>
-    </table>
+    <section>
+      <div class="intro">
+        Are you pressed for time? Do you need to make a technology selection
+        before the close of business but feel overwhelmed by the myriad choices?
+        Are you neither interested in doing nor qualified to perform a cost/benefit
+        analysis? Do you just need to get the ball rolling and make a
+        recommendation to your stakeholders? Then put your trust in our patented
+        "Project Management Dev Dice" and leave the technology selection to
+        us!<sup>**</sup>
+      </div>
+
+      <div class="technology-statement">
+        <p class="boss-quote">No problem, boss. We're going to use <span data-ng-click="reRoll($event, 'frontEnd')" class="tech">{{frontEnd}}</span>
+        on top of <span data-ng-click="reRoll($event, 'backEnd')" class="tech">{{backEnd}}</span> with
+        <span data-ng-click="reRoll($event, 'db')" class="tech">{{db}}</span> for persistence.
+        <span data-ng-show="vcsChecked">As for VCS, we're putting the whole
+        thing into <span data-ng-click="reRoll($event, 'vcs')" class="tech">{{vcs}}</span>.</span></p>
+      </div>
+
+      <div class="controls">
+        <a href="/" class="reroll" data-ng-click="reRoll($event)">Roll again!</a>
+        <label for="vcs">Greenfield Project? Need version control, too?</label>
+        <input type="checkbox" name="vcs" id="vcs" data-ng-model="vcsChecked" data-ng-click="vcsReRoll($event)" />
+      </div>
+
+
+      <div class="footnotes">
+        <sup>**</sup> Where by "us", we mean "chance".
+      </div>
+    </section>
+
+    <script src="/components/angular/angular.min.js"></script>
+    <script src="/javascripts/controllers.js"></script>
   </body>
 </html>
