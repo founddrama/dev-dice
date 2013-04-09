@@ -1,2 +1,4 @@
 node_modules/
-static/css/
+
+# normally I would compile on deploy but...
+#static/css/
