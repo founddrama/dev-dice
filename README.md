@@ -7,4 +7,4 @@ just need to get the ball rolling and make a recommendation to your
 stakeholders? Then put your trust in our patented "Project Management Dev Dice"
 and leave the technology selection to us!
 
-Use it now: <http://cryptic-refuge-8851.herokuapp.com/>
+Use it now: <http://dev-dice.herokuapp.com/>
