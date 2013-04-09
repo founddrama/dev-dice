@@ -13,6 +13,7 @@
 
 body {
   box-sizing: border-box;
+  margin: 0;
   background-color: $primary;
   font: 16px/24px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -32,6 +33,7 @@ h1 {
 }
 
 section {
+  overflow: hidden;
   line-height: 1.5em;
   font-size: 1em;
 }
