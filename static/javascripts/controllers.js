@@ -21,10 +21,4 @@ var DiceController = ['$scope', '$http', '$window', function($scope, $http, $win
       $scope.reRoll(null, 'vcs');
     }
   }
-
-  if ('ondevicemotion' in $window && 'addEventListener' in $window) {
-    $window.addEventListener('shake', _roll, false);
-    $scope.hasShake = true;
-  }
-
 }];
