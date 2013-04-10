@@ -1,0 +1,10 @@
+{
+  "name": "dev-dice",
+  "version": "0.1.2",
+  "dependencies": {
+    "angular": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "latest"
+  }
+}

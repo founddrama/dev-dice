@@ -1,19 +1,15 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 /**
  * Color Palette by Color Scheme Designer
  * Palette URL: http://colorschemedesigner.com/#0X61Tw0w0w0w0
  * Color Space: RGB;
  */
-/* line 9, ../../src/scss/screen.scss */
+/* line 4, ../../src/scss/screen.scss */
 .intro, .controls, .footnotes {
   margin: 3em auto;
   max-width: 600px;
 }
 
-/* line 14, ../../src/scss/screen.scss */
+/* line 9, ../../src/scss/screen.scss */
 body {
   box-sizing: border-box;
   margin: 0;
@@ -21,7 +17,7 @@ body {
   font: 16px/24px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 21, ../../src/scss/screen.scss */
+/* line 16, ../../src/scss/screen.scss */
 h1 {
   margin: 1em 0;
   color: #ffd300;
@@ -30,25 +26,25 @@ h1 {
   font-size: 6em;
   font-family: 'Six Caps', 'Impact', sans-serif;
 }
-/* line 30, ../../src/scss/screen.scss */
+/* line 25, ../../src/scss/screen.scss */
 h1:after {
   content: "\2122";
 }
 
-/* line 35, ../../src/scss/screen.scss */
+/* line 30, ../../src/scss/screen.scss */
 section {
   overflow: hidden;
   line-height: 1.5em;
   font-size: 1em;
 }
 
-/* line 41, ../../src/scss/screen.scss */
+/* line 36, ../../src/scss/screen.scss */
 .intro {
   color: #fff;
   text-shadow: 0 0 1px rgba(18, 18, 18, 0.5), 1px 0 0 rgba(18, 18, 18, 0.5);
 }
 
-/* line 47, ../../src/scss/screen.scss */
+/* line 42, ../../src/scss/screen.scss */
 a {
   color: #1240ab;
   -webkit-transition: all 1s;
@@ -56,7 +52,7 @@ a {
   -o-transition: all 1s;
   transition: all 1s;
 }
-/* line 51, ../../src/scss/screen.scss */
+/* line 46, ../../src/scss/screen.scss */
 a:hover {
   -webkit-transition: all 1s;
   -moz-transition: all 1s;
@@ -64,7 +60,7 @@ a:hover {
   transition: all 1s;
 }
 
-/* line 56, ../../src/scss/screen.scss */
+/* line 51, ../../src/scss/screen.scss */
 .technology-statement {
   display: table;
   -webkit-box-shadow: rgba(18, 18, 18, 0.5) 0 0 12px inset;
@@ -81,21 +77,21 @@ a:hover {
   font-size: 3.5em;
 }
 
-/* line 70, ../../src/scss/screen.scss */
+/* line 65, ../../src/scss/screen.scss */
 .boss-quote {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 74, ../../src/scss/screen.scss */
+/* line 69, ../../src/scss/screen.scss */
 .boss-quote:before {
   content: "\275D\202F";
 }
-/* line 77, ../../src/scss/screen.scss */
+/* line 72, ../../src/scss/screen.scss */
 .boss-quote:after {
   content: "\202F\275E";
 }
 
-/* line 82, ../../src/scss/screen.scss */
+/* line 77, ../../src/scss/screen.scss */
 .tech {
   border-bottom: 2px dashed;
   color: #ffd300;
@@ -104,7 +100,7 @@ a:hover {
   -o-transition: all 1s;
   transition: all 1s;
 }
-/* line 87, ../../src/scss/screen.scss */
+/* line 82, ../../src/scss/screen.scss */
 .tech:hover {
   border-bottom-color: #1240ab;
   color: #1240ab;
@@ -115,16 +111,16 @@ a:hover {
   transition: all 1s;
 }
 
-/* line 95, ../../src/scss/screen.scss */
+/* line 90, ../../src/scss/screen.scss */
 .controls {
   color: white;
 }
-/* line 99, ../../src/scss/screen.scss */
+/* line 94, ../../src/scss/screen.scss */
 .controls label {
   font-size: 0.75em;
 }
 
-/* line 104, ../../src/scss/screen.scss */
+/* line 99, ../../src/scss/screen.scss */
 .reroll {
   display: block;
   -webkit-box-shadow: rgba(18, 18, 18, 0.5) 0 0 12px inset 0 0 20px;
@@ -142,20 +138,20 @@ a:hover {
   font-weight: bold;
   font-size: 2em;
 }
-/* line 122, ../../src/scss/screen.scss */
+/* line 117, ../../src/scss/screen.scss */
 .reroll:hover {
   border-color: rgba(255, 116, 0, 0.75);
   background-image: linear-gradient(rgba(255, 233, 128, 0.7), rgba(255, 211, 0, 0.9), rgba(223, 190, 32, 0.7));
   text-shadow: 0 0 4px rgba(18, 64, 171, 0.25);
 }
 
-/* line 132, ../../src/scss/screen.scss */
+/* line 127, ../../src/scss/screen.scss */
 .footnotes {
   color: #cc8800;
   font-size: 0.75em;
 }
 
-/* line 138, ../../src/scss/screen.scss */
+/* line 133, ../../src/scss/screen.scss */
 footer {
   border-top: #cc8800 1px solid;
   -webkit-box-shadow: #b37700 0 2px 2px 0 inset;
@@ -168,7 +164,7 @@ footer {
   text-align: center;
   font-size: 0.625em;
 }
-/* line 148, ../../src/scss/screen.scss */
+/* line 143, ../../src/scss/screen.scss */
 footer a {
   color: #507fed;
 }

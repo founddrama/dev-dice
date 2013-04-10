@@ -32,6 +32,7 @@ var dataOptions = [
       'dojo',
       'ExtJS',
       'GWT',
+      'Java Swing',
       'jQuery',
       'Kendo UI',
       'KnockoutJS',

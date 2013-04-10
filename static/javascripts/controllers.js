@@ -1,30 +1,25 @@
-var DiceController = ['$scope', '$http', '$window', function($scope, $http, $window) {
-  function _roll(param) {
-    $http.get('/api/roll' + (param ? '/' + param : '')).success(function(data) {
-      for (var d in data) {
-        $scope[d] = data[d];
-      }
-    });
-  }
+(function(ng) {
+  var dice = ng.module('dice', []);
+  dice.controller('DiceController', [
+    '$scope', '$http', '$window',
+    function($scope, $http) {
+      function _roll(param) {
+        $http.get('/api/roll' + (param ? '/' + param : '')).success(function(data) {
+          ng.extend($scope, data);
+        });
+      };
 
-  _roll();
+      _roll();
 
-  $scope.reRoll = function($event, param) {
-    if ($event !== null) {
-      $event.preventDefault();
+      $scope.reRoll = function(param) {
+        _roll(param);
+      };
+
+      $scope.vcsReRoll = function() {
+        if (!$scope.vcsChecked) {
+          $scope.reRoll('vcs');
+        }
+      };
     }
-    _roll(param);
-  }
-
-  $scope.vcsReRoll = function($event) {
-    if (!$scope.vcsChecked) {
-      $scope.reRoll(null, 'vcs');
-    }
-  }
-
-  if ('ondevicemotion' in $window && 'addEventListener' in $window) {
-    $window.addEventListener('shake', _roll, false);
-    $scope.hasShake = true;
-  }
-
-}];
+  ]);
+}(angular));

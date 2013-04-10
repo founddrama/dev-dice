@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app>
+<html data-ng-app="dice">
   <head>
     <title><%= title %></title>
     <link href='http://fonts.googleapis.com/css?family=Six+Caps' rel='stylesheet' type='text/css'>
@@ -19,18 +19,17 @@
       </div>
 
       <div class="technology-statement">
-        <p class="boss-quote">No problem, boss. We're going to use <span data-ng-click="reRoll($event, 'frontEnd')" class="tech">{{frontEnd}}</span>
-        on top of <span data-ng-click="reRoll($event, 'backEnd')" class="tech">{{backEnd}}</span> with
-        <span data-ng-click="reRoll($event, 'db')" class="tech">{{db}}</span> for persistence.
+        <p class="boss-quote">No problem, boss. We're going to use <span data-ng-click="reRoll('frontEnd')" data-ng-bind="frontEnd" class="tech"></span>
+        on top of <span data-ng-click="reRoll('backEnd')" data-ng-bind="backEnd" class="tech"></span> with
+        <span data-ng-click="reRoll('db')" data-ng-bind="db" class="tech"></span> for persistence.
         <span data-ng-show="vcsChecked">As for VCS, we're putting the whole
-        thing into <span data-ng-click="reRoll($event, 'vcs')" class="tech">{{vcs}}</span>.</span></p>
+        thing into <span data-ng-click="reRoll('vcs')" data-ng-bind="vcs" class="tech"></span>.</span></p>
       </div>
 
       <div class="controls">
-        <a href="/" class="reroll" data-ng-click="reRoll($event)">Roll again!</a>
+        <a class="reroll" data-ng-click="reRoll()">Roll again!</a>
         <label for="vcs">Greenfield Project? Need version control, too?</label>
-        <input type="checkbox" name="vcs" id="vcs" data-ng-model="vcsChecked" data-ng-click="vcsReRoll($event)" />
-        <div data-ng-show="hasShake">You can also shake to re-roll!</div>
+        <input type="checkbox" name="vcs" id="vcs" data-ng-model="vcsChecked" data-ng-click="vcsReRoll()" />
       </div>
 
 
@@ -46,7 +45,6 @@
     </footer>
 
     <script src="/components/angular/angular.min.js"></script>
-    <script src="/components/shake.js/shake.js"></script>
     <script src="/javascripts/controllers.js"></script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
