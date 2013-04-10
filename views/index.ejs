@@ -30,6 +30,7 @@
         <a href="/" class="reroll" data-ng-click="reRoll($event)">Roll again!</a>
         <label for="vcs">Greenfield Project? Need version control, too?</label>
         <input type="checkbox" name="vcs" id="vcs" data-ng-model="vcsChecked" data-ng-click="vcsReRoll($event)" />
+        <div data-ng-show="hasShake">You can also shake to re-roll!</div>
       </div>
 
 
@@ -37,18 +38,25 @@
         <sup>**</sup> Where by "us", we mean "chance".
       </div>
     </section>
+    <footer>
+      Created by <a href="https://twitter.com/founddrama">@founddrama</a>
+      (<a href="https://github.com/founddrama/dev-dice">source on Github</a>)
+      and shared here with the caution that you probably don't want to use this
+      for your real work.
+    </footer>
 
     <script src="/components/angular/angular.min.js"></script>
+    <script src="/components/shake.js/shake.js"></script>
     <script src="/javascripts/controllers.js"></script>
-		<script type="text/javascript">
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-39997400-1']);
-		  _gaq.push(['_trackPageview']);
-		  (function() {
-				var s, ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  }());
-		</script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39997400-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var s, ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      }());
+    </script>
   </body>
 </html>

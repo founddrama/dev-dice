@@ -87,7 +87,7 @@ a {
   &:hover {
     border-bottom-color: $complement;
     color: $complement;
-    cursor: hand;
+    cursor: pointer;
     @include transition();
   }
 }
@@ -133,4 +133,17 @@ a {
   @extend %block;
   color: darken($primary, 10%);
   font-size: 0.75em;
+}
+
+footer {
+  border-top: darken($primary, 10%) 1px solid;
+  @include box-shadow(darken($primary, 15%) 0 2px 2px 0 inset);
+  margin: 0 -4em;
+  padding: 1em 0;
+  background-color: $complement;
+  color: lighten($complement, 50%);
+  text-align: center;
+  font-size: 0.625em;
+
+  a { color: lighten($complement, 25%); }
 }

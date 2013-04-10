@@ -1,4 +1,4 @@
-var DiceController = ['$scope', '$http', function($scope, $http) {
+var DiceController = ['$scope', '$http', '$window', function($scope, $http, $window) {
   function _roll(param) {
     $http.get('/api/roll' + (param ? '/' + param : '')).success(function(data) {
       for (var d in data) {
@@ -21,4 +21,10 @@ var DiceController = ['$scope', '$http', function($scope, $http) {
       $scope.reRoll(null, 'vcs');
     }
   }
+
+  if ('ondevicemotion' in $window && 'addEventListener' in $window) {
+    $window.addEventListener('shake', _roll, false);
+    $scope.hasShake = true;
+  }
+
 }];
