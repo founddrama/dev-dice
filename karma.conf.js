@@ -24,11 +24,19 @@ module.exports = function(config) {
     // list of files to exclude
     exclude: [],
 
+    preprocessors: {
+      'static/javascripts/*.js': ['coverage']
+    },
+
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress'],
+    reporters: ['progress', 'junit', 'coverage'],
 
+    junitReporter: {
+      outputFile: 'test-results.xml',
+      suite: ''
+    },
 
     // web server port
     port: 9876,
