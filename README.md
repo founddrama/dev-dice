@@ -25,4 +25,5 @@ do so. As for which things:
 - [AngularJS](http://angularjs.org/)
 - [Bower](http://twitter.github.io/bower/)
 - [Heroku](https://www.heroku.com/)
+- [MongoDB](http://www.mongodb.org/) and [MongoLab](https://mongolab.com/)
 - [Node.js](http://nodejs.org/) and [Express](http://expressjs.com/)
