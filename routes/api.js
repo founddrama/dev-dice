@@ -1,9 +1,9 @@
 var utils    = require('../dice/dice-utils'),
     DICE     = {
-      db      : new utils.Die(utils.db),
-      backEnd : new utils.Die(utils.backEnd),
-      frontEnd: new utils.Die(utils.frontEnd),
-      vcs     : new utils.Die(utils.vcs)
+      db      : utils.db,
+      backEnd : utils.backEnd,
+      frontEnd: utils.frontEnd,
+      vcs     : utils.vcs
     };
 
 /**

@@ -7,8 +7,9 @@
     "test": "./node_modules/.bin/karma start karma-travis.conf.js"
   },
   "dependencies": {
-    "express": "3.1.1",
     "ejs": "*",
+    "express": "3.1.1",
+    "mongodb": "^1.4.32",
     "underscore": "1.4.4"
   },
   "engines": {
