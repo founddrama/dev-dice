@@ -1,6 +1,8 @@
 node_modules/
+.env
 coverage/
 test-results.xml
+server.log
 
 # normally I would compile on deploy but...
 #static/css/

@@ -1,10 +1,11 @@
-var utils    = require('../dice/dice-utils'),
-    DICE     = {
-      db      : utils.db,
-      backEnd : utils.backEnd,
-      frontEnd: utils.frontEnd,
-      vcs     : utils.vcs
-    };
+const {
+  db,
+  backEnd,
+  frontEnd,
+  vcs
+} = require('../dice/dice-utils');
+
+const DICE = { db, backEnd, frontEnd, vcs };
 
 /**
  * Optional on {@code req.params}: a {@code +} delimited list of which dice to roll.
@@ -12,25 +13,19 @@ var utils    = require('../dice/dice-utils'),
  * @param req Request
  * @param res Response
  */
-function roll(req, res) {
-  var data = {},
-      diceFromParams,
-      d;
+const roll = (req, res) => {
+  const { dice } = req.params;
+  let diceToRoll;
 
-  if (req.params.dice !== undefined) {
-    diceFromParams = req.params.dice.split('+');
-    diceFromParams.forEach(function(el, i, arr) {
-      if (el in DICE) {
-        data[el] = DICE[el].roll()
-      }
-    });
+  if (dice !== undefined) {
+    diceToRoll = dice.split('+');
   } else {
-    for (d in DICE) {
-      data[d] = DICE[d].roll();
-    }
+    diceToRoll = Object.keys(DICE);
   }
 
-  res.json(data);
+  res.json(diceToRoll.reduce((accumulator, die) => {
+    return { ...accumulator, [die]: DICE[die].roll() };
+  }, {}));
 }
 
 exports.roll = roll;

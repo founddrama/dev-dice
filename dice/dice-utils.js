@@ -1,37 +1,34 @@
-var _ = require('underscore');
-var MongoClient = require('mongodb').MongoClient;
-var username = process.env.MONGODB_USER;
-var password = process.env.MONGODB_PASS;
+const MongoClient = require('mongodb').MongoClient;
+const { MONGODB_USER, MONGODB_PASS, MONGODB_NAME } = process.env;
+const { chain } = require('underscore');
 
-function getDataFromMongo(collectionName, die) {
-  MongoClient.connect('mongodb://' + username + ':' + password + '@ds049651.mongolab.com:49651/devdice', function(err, db) {
+const MONGO_URI = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASS}@cluster0.3dnfr.mongodb.net/${MONGODB_NAME}?retryWrites=true&w=majority`;
+
+function getDataFromMongo(collectionName, techDie) {
+  const mongoClient = new MongoClient(MONGO_URI, { useUnifiedTopology: true });
+  mongoClient.connect((err, client) => {
     if (!err) {
-      console.log('Connected to devdice; loading %s...', collectionName);
-      var collection = db.collection(collectionName);
-      collection.find().toArray(function(err, items) {
-        die.options = items.map(function(item) {
-          return item.name;
-        });
+      console.log(`Connected to devdice; loading ${collectionName}...`);
+      const collection = client.db(MONGODB_NAME).collection(collectionName);
+      collection.find().toArray((_err, items) => {
+        techDie.options = items.map((item) => item.name);
       });
     } else {
-      console.error('Error(s) connecting to dev dive :(');
+      console.error(`Error(s) connecting to dev dive :(\n${err.message}`);
     }
   });
 }
 
-function Die(collectionName) {
-  this.collectionName = collectionName;
-  this.options        = [];
-
-  getDataFromMongo(collectionName, this);
-}
-
-Die.prototype = {
-  constructor: Die,
-  roll: function() {
-    return _.first(_.shuffle(this.options));
+class Die {
+  constructor(collectionName) {
+    this.collectionName = collectionName;
+    this.options        = [];
+  
+    getDataFromMongo(collectionName, this);
   }
-};
+
+  roll = () => chain(this.options).shuffle().first().value();
+}
 
 exports.backEnd  = new Die('backends');
 exports.frontEnd = new Die('frontends');

@@ -7,8 +7,10 @@
     "test": "./node_modules/.bin/karma start karma-travis.conf.js"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "ejs": "*",
     "express": "4.17.1",
+    "express-logger": "0.0.3",
     "mongodb": "^3.6.1",
     "underscore": "1.4.4"
   },
