@@ -1,0 +1,16 @@
+/**
+ * Color Palette by Color Scheme Designer
+ * Palette URL: http://colorschemedesigner.com/#0X61Tw0w0w0w0
+ * Color Space: RGB;
+ */
+ :root {
+  --primary: #FFAA00;
+  --secondary1: #FFD300;
+  --secondary2: #FF7400;
+  --complement: #1240AB;
+  --complement-0_25-opacity: rgba(18, 64, 171, 0.25);
+  
+  --shadow: rgba(18, 18, 18, 0.5);
+  
+  --width: 600px;
+ }

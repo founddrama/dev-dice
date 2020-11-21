@@ -22,9 +22,8 @@ brains until finally I decided to cook this up.
 I wanted to play around with a couple of things, and this provided an excuse to
 do so. As for which things:
 
-- [AngularJS](http://angularjs.org/)
-- [Bower](http://twitter.github.io/bower/)
+- [React](https://reactjs.org/)
 - [Heroku](https://www.heroku.com/)
-- [MongoDB](http://www.mongodb.org/) and [MongoLab](https://mongolab.com/)
+- [MongoDB](http://www.mongodb.org/) and [Mongo Atlas](https://www.mongodb.com/cloud/atlas)
 - [Node.js](http://nodejs.org/) and [Express](http://expressjs.com/)
 
