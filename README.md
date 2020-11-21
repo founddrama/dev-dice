@@ -8,7 +8,7 @@ Patented Project Management Dev Dice!
 > stakeholders? Then put your trust in our patented "Project Management Dev Dice"
 > and leave the technology selection to us!
 
-Use it now: <http://dev-dice.herokuapp.com/>
+Use it now: <https://dev-dice.herokuapp.com/>
 
 #### Ha ha, OK what is this?
 
@@ -24,6 +24,6 @@ do so. As for which things:
 
 - [React](https://reactjs.org/)
 - [Heroku](https://www.heroku.com/)
-- [MongoDB](http://www.mongodb.org/) and [Mongo Atlas](https://www.mongodb.com/cloud/atlas)
-- [Node.js](http://nodejs.org/) and [Express](http://expressjs.com/)
+- [MongoDB](https://www.mongodb.org/) and [Mongo Atlas](https://www.mongodb.com/cloud/atlas)
+- [Node.js](https://nodejs.org/) and [Express](https://expressjs.com/)
 
