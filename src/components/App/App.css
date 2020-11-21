@@ -1,0 +1,152 @@
+@import url('../../css/variables.css');
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  background-color: var(--primary);
+  font: 16px/24px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  margin: 1em 0;
+  color: var(--secondary1);
+  text-align: center;
+  text-shadow: 0 -1px 2px var(--complement);
+  font-size: 6em;
+  font-family: 'Six Caps', 'Impact', sans-serif;
+}
+
+h1:after {
+  content: "\2122";
+}
+
+section {
+  overflow: hidden;
+  line-height: 1.5em;
+  font-size: 1em;
+}
+
+.intro {
+  margin: 3em auto;
+  max-width: var(--width);
+  color: #fff;
+  text-shadow: 0 0 1px var(--shadow), 1px 0 0 var(--shadow);
+}
+
+a {
+  color: var(--complement);
+  transition: all 1s;
+}
+
+a:hover {
+  transition: all 1s;
+}
+
+.technology-statement {
+  display: table;
+  box-shadow: var(--shadow) 0 0 12px inset;
+  margin: 2em -4em;
+  padding: 0.5em 6em;
+  min-height: 6em;
+  background-color: var(--secondary2);
+  color: white;
+  text-align: center;
+  line-height: 1.5em;
+  font-weight: bold;
+  font-size: 3.5em;
+}
+
+.boss-quote {
+  display: table-cell;
+  vertical-align: middle;
+}
+.boss-quote:before {
+  content: "\275D\202F";
+}
+.boss-quote:after {
+  content: "\202F\275E";
+}
+
+.tech {
+  border-bottom: 2px dashed;
+  color: var(--secondary1);
+  transition: all 1s;
+}
+
+.tech:hover {
+  border-bottom-color: var(--complement);
+  color: var(--complement);
+  cursor: pointer;
+  transition: all 1s;
+}
+
+.controls {
+  margin: 3em auto;
+  max-width: var(--width);
+  color: white;
+}
+
+.VCS_checkbox--container {
+  padding-top: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.controls label {
+  font-size: 0.75em;
+}
+
+.reroll {
+  display: block;
+  box-shadow: var(--shadow) 0 0 20px;
+  max-width: var(--width);
+  border: 0.1em solid rgba(255, 116, 0, 0.5);
+  border-radius: 0.5em;
+  background-color: rgba(255, 211, 0, 0.8);
+  background-image: linear-gradient(
+    rgba(255, 233, 128, 0.5),
+    rgba(255, 211, 0, 0.8),
+    rgba(223, 190, 32, 0.5));
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  line-height: 2em;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.reroll:hover {
+  border-color: rgba(255, 116, 0, 0.75);
+  background-image: linear-gradient(
+    rgba(255, 233, 128, 0.7),
+    rgba(255, 211, 0, 0.9),
+    rgba(223, 190, 32, 0.7));
+  text-shadow: 0 0 4px var(--complement-0_25-opacity);
+}
+
+.footnotes {
+  margin: 3em auto;
+  max-width: var(--width);
+  /* darken(var(--primary), 10%) */
+  color: #cc8800;
+  font-size: 0.75em;
+}
+
+footer {
+  /* darken(var(--primary), 10%) */
+  border-top: #cc8800 1px solid;
+  /* darken(var(--primary), 15%) */
+  box-shadow: #b37700 0 2px 2px 0 inset;
+  margin: 0 -4em;
+  padding: 1em 0;
+  background-color: var(--complement);
+  /* lighten(var(--complement), 50%) */
+  color: #c3d3f9;
+  text-align: center;
+  font-size: 0.625em;
+}
+
+footer a {
+  /* lighten(var(--complement), 25%) */
+  color: #507fed;
+}
