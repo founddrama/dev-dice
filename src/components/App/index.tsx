@@ -5,7 +5,6 @@ import ApiConnector from '../ApiConnector';
 import TechBuzzword from '../TechBuzzword';
 import StaticFooter from '../StaticFooter';
 import StaticIntro from '../StaticIntro';
-import './App.css';
 
 type DevDiceAppProps = {};
 type DevDiceAppState = DevDiceApiResponse & {
