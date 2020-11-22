@@ -26,11 +26,10 @@ export default {
     "node",
   ],
 
-  preset: 'ts-jest/presets/js-with-babel',
+  preset: 'ts-jest',
+  testEnvironment: 'node',
 
-  clearMocks: true,
   resetMocks: true,
-  restoreMocks: true,
 
   // The root directory that Jest should scan for tests and modules within
   rootDir: '.',
