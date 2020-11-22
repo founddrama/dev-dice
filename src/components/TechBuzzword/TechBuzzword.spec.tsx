@@ -1,8 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import TechBuzzword from '.';
 import { DevTech } from '../../types';
 import { DEVTECH_DEFAULTS } from './constants';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('<TechBuzzword />', () => {
   describe('init without a techName', () => {
