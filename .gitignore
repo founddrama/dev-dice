@@ -4,6 +4,7 @@ build/
 coverage/
 test-results.xml
 server.log
+.DS_Store
 
 # normally I would compile on deploy but...
 #static/css/
