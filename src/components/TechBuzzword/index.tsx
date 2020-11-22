@@ -11,9 +11,7 @@ type TechBuzzwordProps = {
 export default class TechBuzzword extends React.Component<TechBuzzwordProps> {
   techNameOrDefault = (): string => {
     const { techName, devTech } = this.props;
-
-    if (techName) return techName;
-    else return DEVTECH_DEFAULTS[devTech];
+    return techName || DEVTECH_DEFAULTS[devTech];
   }
 
   render(): JSX.Element {

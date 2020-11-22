@@ -1,4 +1,4 @@
-@import url('../../css/variables.css');
+@import url('variables.css');
 
 body {
   box-sizing: border-box;
@@ -113,6 +113,7 @@ a:hover {
   line-height: 2em;
   font-weight: bold;
   font-size: 2em;
+  cursor: pointer;
 }
 
 .reroll:hover {

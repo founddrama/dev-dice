@@ -1,11 +1,10 @@
 import React from 'react';
 import { DevDiceApiResponse, DevTech } from '../../types';
 import { ASTERISK, SPACE } from '../common';
-import ApiConnector from '../ApiConnector';
+import { getDieRoll } from '../ApiConnector';
 import TechBuzzword from '../TechBuzzword';
 import StaticFooter from '../StaticFooter';
 import StaticIntro from '../StaticIntro';
-import './App.css';
 
 type DevDiceAppProps = {};
 type DevDiceAppState = DevDiceApiResponse & {
@@ -13,21 +12,18 @@ type DevDiceAppState = DevDiceApiResponse & {
 };
 
 export default class App extends React.Component<DevDiceAppProps, DevDiceAppState> {
-  apiConnector: ApiConnector;
-
   constructor(props: DevDiceAppProps) {
     super(props);
-    this.apiConnector = new ApiConnector();
     this.state = { isVcsChecked: false };
   }
 
-  getDieRoll = async (devTech?: DevTech): Promise<void> => {
-    const data = await this.apiConnector.getDieRoll(devTech);
+  rollDice = async (devTech?: DevTech): Promise<void> => {
+    const data = await getDieRoll(devTech);
     this.setState({ ...data });
   };
 
   componentDidMount(): void {
-    this.getDieRoll();
+    this.rollDice();
   }
 
   render(): JSX.Element {
@@ -48,23 +44,23 @@ export default class App extends React.Component<DevDiceAppProps, DevDiceAppStat
           <div className="technology-statement">
             <p className="boss-quote">
               No problem, boss. We're going to use{SPACE}
-              <TechBuzzword onClick={this.getDieRoll} devTech={DevTech.FRONT_END} techName={frontEnd} />
+              <TechBuzzword onClick={this.rollDice} devTech={DevTech.FRONT_END} techName={frontEnd} />
               {SPACE}on top of{SPACE}
-              <TechBuzzword onClick={this.getDieRoll} devTech={DevTech.BACK_END} techName={backEnd} />
+              <TechBuzzword onClick={this.rollDice} devTech={DevTech.BACK_END} techName={backEnd} />
               {SPACE}with{SPACE}
-              <TechBuzzword onClick={this.getDieRoll} devTech={DevTech.DATABASE} techName={db} />
+              <TechBuzzword onClick={this.rollDice} devTech={DevTech.DATABASE} techName={db} />
               {SPACE}for persistence.
             {isVcsChecked &&
               <>
                 {SPACE}As for version control, we're putting the whole thing into{SPACE}
-                <TechBuzzword onClick={this.getDieRoll} devTech={DevTech.VERSION_CONTROL} techName={vcs} />.
+                <TechBuzzword onClick={this.rollDice} devTech={DevTech.VERSION_CONTROL} techName={vcs} />.
               </>
             }
             </p>
           </div>
 
           <div className="controls">
-            <a className="reroll" onClick={() => this.getDieRoll()} data-ng-click="reRoll()">Roll again!</a>
+            <span className="reroll" onClick={() => this.rollDice()}>Roll again!</span>
             <div className="VCS_checkbox--container">
               <label htmlFor="vcs">Greenfield Project? Need version control, too?</label>
               <input type="checkbox" name="vcs" id="vcs" onClick={() => this.setState({ isVcsChecked: !isVcsChecked })} />
