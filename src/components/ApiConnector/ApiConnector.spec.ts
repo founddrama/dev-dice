@@ -1,5 +1,5 @@
 import mockAxios from 'axios';
-import { getDieRoll } from '.';
+import ApiConnector from '.';
 import { DevDiceApiResponse, DevTech } from '../../types';
 
 jest.mock('axios');
@@ -18,7 +18,7 @@ describe('ApiConnector.getDieRoll', () => {
   describe('called with no params', () => {
     beforeEach(async () => {
       (mockAxios.get as jest.Mock).mockResolvedValue({ data: mockResponse });
-      response = await getDieRoll();
+      response = await ApiConnector.getDieRoll();
     });
     
     it('should call /api/roll when no param is supplied', async () => {
@@ -34,7 +34,7 @@ describe('ApiConnector.getDieRoll', () => {
     let { frontEnd } = mockResponse;
     beforeEach(async () => {
       (mockAxios.get as jest.Mock).mockResolvedValue({ data: { frontEnd } });
-      response = await getDieRoll(DevTech.FRONT_END);
+      response = await ApiConnector.getDieRoll(DevTech.FRONT_END);
     });
     
     it('should call /api/roll when no param is supplied', async () => {

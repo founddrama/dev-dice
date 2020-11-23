@@ -16,7 +16,7 @@ const getApiHost = (): string => {
   }
 };
 
-export const getDieRoll = async (devTech?: DevTech): Promise<DevDiceApiResponse | void> => {
+const getDieRoll = async (devTech?: DevTech): Promise<DevDiceApiResponse | void> => {
   try {
     const { data } = await axios.get(`${getApiHost()}/api/roll${devTech ? `/${devTech}` : ''}`);
     return data;
@@ -26,3 +26,5 @@ export const getDieRoll = async (devTech?: DevTech): Promise<DevDiceApiResponse 
 
   return;
 };
+
+export default { getDieRoll };

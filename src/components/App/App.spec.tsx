@@ -1,20 +1,30 @@
-jest.mock('../ApiConnector');
-
 import React from 'react';
 import App from '.';
-import { getDieRoll } from '../ApiConnector';
-import { DevTech } from '../../types';
+import mockApiConnector from '../ApiConnector';
+import { DevDiceApiResponse, DevTech } from '../../types';
 import { fireEvent, render, screen } from '@testing-library/react';
 
+jest.mock('../ApiConnector');
+
 describe('<App />', () => {
-  beforeEach(() => {
-    render(<App />);
-  });
+  const mockResponse: DevDiceApiResponse = {
+    frontEnd: 'React',
+    backEnd: 'Node',
+    db: 'Mongo',
+    vcs: 'Git',
+  };
 
   describe('initial rendering', () => {
-    test('requests DevTech', () => {
-      expect(getDieRoll).toHaveBeenCalledTimes(1);
-      expect(getDieRoll).lastCalledWith(undefined);
+    beforeEach(async () => {
+      (mockApiConnector.getDieRoll as jest.Mock)
+        .mockResolvedValue(mockResponse);
+      render(<App />);
+    });
+
+    test('requests DevTech', async () => {
+      expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(1);
+      expect(mockApiConnector.getDieRoll).lastCalledWith(undefined);
+      await expect(mockApiConnector.getDieRoll()).resolves.toEqual(mockResponse);
     });
 
     test('the heading', () => {
@@ -62,55 +72,82 @@ describe('<App />', () => {
   });
 
   describe('page interactions', () => {
+    const mockResponse2: DevDiceApiResponse = {
+      frontEnd: 'Angular',
+      backEnd: 'Grails',
+      db: 'Postgres',
+      vcs: 'Subversion',
+    };
+
+    beforeEach(async () => {
+      (mockApiConnector.getDieRoll as jest.Mock)
+        .mockResolvedValue(mockResponse)
+        .mockResolvedValueOnce(mockResponse)
+        .mockResolvedValueOnce(mockResponse2);
+      render(<App />);
+    });
+
     test('clicking to change front-end', async () => {
-      const frontEnd = screen.getByText('jQuery spaghetti');
+      const frontEnd = screen.getByText(/React/);
       expect(frontEnd).toBeInTheDocument();
 
       fireEvent.click(frontEnd);
-      expect(getDieRoll).toHaveBeenCalledTimes(2);
-      expect(getDieRoll).lastCalledWith(DevTech.FRONT_END);
+      expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
+      expect(mockApiConnector.getDieRoll).lastCalledWith(DevTech.FRONT_END);
+      expect(await screen.findByText('Angular')).toBeInTheDocument();
     });
 
-    test('clicking to change back-end', () => {
-      const backEnd = screen.getByText(/Python scripts/);
+    test('clicking to change back-end', async () => {
+      const backEnd = screen.getByText(/Node/);
       expect(backEnd).toBeInTheDocument();
 
       fireEvent.click(backEnd);
-      expect(getDieRoll).toHaveBeenCalledTimes(2);
-      expect(getDieRoll).lastCalledWith(DevTech.BACK_END);
+      expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
+      expect(mockApiConnector.getDieRoll).lastCalledWith(DevTech.BACK_END);
+      expect(await screen.findByText('Grails')).toBeInTheDocument();
     });
 
-    test('clicking to change database', () => {
-      const db = screen.getByText(/JSON files/);
+    test('clicking to change database', async () => {
+      const db = screen.getByText(/Mongo/);
       expect(db).toBeInTheDocument();
 
       fireEvent.click(db);
-      expect(getDieRoll).toHaveBeenCalledTimes(2);
-      expect(getDieRoll).lastCalledWith(DevTech.DATABASE);
+      expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
+      expect(mockApiConnector.getDieRoll).lastCalledWith(DevTech.DATABASE);
+      expect(await screen.findByText('Postgres')).toBeInTheDocument();
     });
 
     describe('version control', () => {
       let vcs: HTMLElement;
       beforeEach(async () => {
         fireEvent.click(screen.getByRole('checkbox'));
-        vcs = await screen.findByText(/zip files/);
+        vcs = await screen.findByText('Git');
       });
 
       test('clicking to show', () => {
         expect(vcs).toBeInTheDocument();
       });
 
-      test('clicking to change', () => {
+      test('clicking to change', async () => {
         fireEvent.click(vcs);
-        expect(getDieRoll).toHaveBeenCalledTimes(2);
-        expect(getDieRoll).lastCalledWith(DevTech.VERSION_CONTROL);
+        expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
+        expect(mockApiConnector.getDieRoll).lastCalledWith(DevTech.VERSION_CONTROL);
+        expect(await screen.findByText('Subversion')).toBeInTheDocument();
       });
     });
 
-    test('clicking to re-roll everything', () => {
+    test('clicking to re-roll everything', async () => {
       fireEvent.click(screen.getByText('Roll again!'));
-      expect(getDieRoll).toHaveBeenCalledTimes(2);
-      expect(getDieRoll).lastCalledWith(undefined);
+      expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
+      expect(mockApiConnector.getDieRoll).lastCalledWith(undefined);
+
+      expect(await screen.findByText('Angular')).toBeInTheDocument();
+      expect(await screen.findByText('Grails')).toBeInTheDocument();
+      expect(await screen.findByText('Postgres')).toBeInTheDocument();
+
+      expect(screen.queryByText('React')).not.toBeInTheDocument();
+      expect(screen.queryByText('Node')).not.toBeInTheDocument();
+      expect(screen.queryByText('Mongo')).not.toBeInTheDocument();
     });
   });
 });

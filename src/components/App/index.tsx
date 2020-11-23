@@ -1,7 +1,7 @@
 import React from 'react';
 import { DevDiceApiResponse, DevTech } from '../../types';
 import { ASTERISK, SPACE } from '../common';
-import { getDieRoll } from '../ApiConnector';
+import ApiConnector from '../ApiConnector';
 import TechBuzzword from '../TechBuzzword';
 import StaticFooter from '../StaticFooter';
 import StaticIntro from '../StaticIntro';
@@ -18,7 +18,7 @@ export default class App extends React.Component<DevDiceAppProps, DevDiceAppStat
   }
 
   rollDice = async (devTech?: DevTech): Promise<void> => {
-    const data = await getDieRoll(devTech);
+    const data = await ApiConnector.getDieRoll(devTech);
     this.setState({ ...data });
   };
 
