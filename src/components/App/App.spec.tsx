@@ -80,10 +80,13 @@ describe('<App />', () => {
     };
 
     beforeEach(async () => {
+      const mockImpl = (respondWith = mockResponse) => ((devTech?: DevTech) => {
+        return Promise.resolve(devTech ? { [devTech]: respondWith[devTech] } : respondWith);
+      });
       (mockApiConnector.getDieRoll as jest.Mock)
-        .mockResolvedValue(mockResponse)
-        .mockResolvedValueOnce(mockResponse)
-        .mockResolvedValueOnce(mockResponse2);
+        .mockImplementation(mockImpl())
+        .mockImplementationOnce(mockImpl(mockResponse))
+        .mockImplementationOnce(mockImpl(mockResponse2))
       render(<App />);
     });
 
@@ -95,6 +98,11 @@ describe('<App />', () => {
       expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
       expect(mockApiConnector.getDieRoll).lastCalledWith(DevTech.FRONT_END);
       expect(await screen.findByText('Angular')).toBeInTheDocument();
+
+      Object.values(mockResponse2).filter(devTech => devTech !== 'Angular')
+        .forEach((devTech) => {
+          expect(screen.queryByText(devTech!)).not.toBeInTheDocument();
+        });
     });
 
     test('clicking to change back-end', async () => {
@@ -105,6 +113,11 @@ describe('<App />', () => {
       expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
       expect(mockApiConnector.getDieRoll).lastCalledWith(DevTech.BACK_END);
       expect(await screen.findByText('Grails')).toBeInTheDocument();
+
+      Object.values(mockResponse2).filter(devTech => devTech !== 'Grails')
+        .forEach((devTech) => {
+          expect(screen.queryByText(devTech!)).not.toBeInTheDocument();
+        });
     });
 
     test('clicking to change database', async () => {
@@ -115,9 +128,14 @@ describe('<App />', () => {
       expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
       expect(mockApiConnector.getDieRoll).lastCalledWith(DevTech.DATABASE);
       expect(await screen.findByText('Postgres')).toBeInTheDocument();
+
+      Object.values(mockResponse2).filter(devTech => devTech !== 'Postgres')
+        .forEach((devTech) => {
+          expect(screen.queryByText(devTech!)).not.toBeInTheDocument();
+        });
     });
 
-    describe('version control', () => {
+    describe('with version control showing', () => {
       let vcs: HTMLElement;
       beforeEach(async () => {
         fireEvent.click(screen.getByRole('checkbox'));
@@ -133,21 +151,28 @@ describe('<App />', () => {
         expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
         expect(mockApiConnector.getDieRoll).lastCalledWith(DevTech.VERSION_CONTROL);
         expect(await screen.findByText('Subversion')).toBeInTheDocument();
+
+        Object.values(mockResponse2).filter(devTech => devTech !== 'Subversion')
+        .forEach((devTech) => {
+          expect(screen.queryByText(devTech!)).not.toBeInTheDocument();
+        });
       });
-    });
 
-    test('clicking to re-roll everything', async () => {
-      fireEvent.click(screen.getByText('Roll again!'));
-      expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
-      expect(mockApiConnector.getDieRoll).lastCalledWith(undefined);
-
-      expect(await screen.findByText('Angular')).toBeInTheDocument();
-      expect(await screen.findByText('Grails')).toBeInTheDocument();
-      expect(await screen.findByText('Postgres')).toBeInTheDocument();
-
-      expect(screen.queryByText('React')).not.toBeInTheDocument();
-      expect(screen.queryByText('Node')).not.toBeInTheDocument();
-      expect(screen.queryByText('Mongo')).not.toBeInTheDocument();
+      test('clicking to re-roll everything', async () => {
+        fireEvent.click(screen.getByText('Roll again!'));
+        expect(mockApiConnector.getDieRoll).toHaveBeenCalledTimes(2);
+        expect(mockApiConnector.getDieRoll).lastCalledWith(undefined);
+  
+        expect(await screen.findByText('Angular')).toBeInTheDocument();
+        expect(await screen.findByText('Grails')).toBeInTheDocument();
+        expect(await screen.findByText('Postgres')).toBeInTheDocument();
+        expect(await screen.findByText('Subversion')).toBeInTheDocument();
+  
+        expect(screen.queryByText('React')).not.toBeInTheDocument();
+        expect(screen.queryByText('Node')).not.toBeInTheDocument();
+        expect(screen.queryByText('Mongo')).not.toBeInTheDocument();
+        expect(screen.queryByText('Git')).not.toBeInTheDocument();
+      });
     });
   });
 });
