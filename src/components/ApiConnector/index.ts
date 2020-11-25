@@ -3,16 +3,13 @@ import { DevDiceApiResponse, DevTech } from "../../types";
 
 const getApiHost = (): string => {
   const { NODE_ENV } = process.env;
+  const { protocol, hostname, origin } = window.location;
 
   if (NODE_ENV === 'development') {
-    const {
-      REACT_APP_PROTOCOL,
-      REACT_APP_HOSTNAME,
-      REACT_APP_SERVER_APP_PORT,
-    } = process.env;
-    return `${REACT_APP_PROTOCOL}//${REACT_APP_HOSTNAME}:${REACT_APP_SERVER_APP_PORT}`;
+    const { REACT_APP_SERVER_APP_PORT } = process.env;
+    return `${protocol}//${hostname}:${REACT_APP_SERVER_APP_PORT}`;
   } else {
-    return window.location.origin;
+    return origin;
   }
 };
 
@@ -27,4 +24,6 @@ const getDieRoll = async (devTech?: DevTech): Promise<DevDiceApiResponse | void>
   return;
 };
 
-export default { getDieRoll };
+const ApiConnector = { getDieRoll };
+
+export default ApiConnector;

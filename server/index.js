@@ -51,6 +51,6 @@ app.route('/').get((_req, res) => res.sendFile('./build/index.html', { root: __d
 app.route('/api/roll').get(roll);
 app.route('/api/roll/:dice').get(roll);
 
-http.createServer(app).listen(app.get('port'), function() {
+http.createServer(app).listen(app.get('port'), () => {
   console.log(`Express server listening on port ${app.get('port')}`);
 });

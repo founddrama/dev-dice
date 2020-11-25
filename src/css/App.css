@@ -12,8 +12,9 @@ h1 {
   color: var(--secondary1);
   text-align: center;
   text-shadow: 0 -1px 2px var(--complement);
-  font-size: 6em;
   font-family: 'Six Caps', 'Impact', sans-serif;
+  font-size: 6rem;
+  line-height: 6rem;
 }
 
 h1:after {
@@ -27,7 +28,8 @@ section {
 }
 
 .intro {
-  margin: 3em auto;
+  margin: 3rem auto;
+  padding: 0 3rem;
   max-width: var(--width);
   color: #fff;
   text-shadow: 0 0 1px var(--shadow), 1px 0 0 var(--shadow);
@@ -43,7 +45,9 @@ a:hover {
 }
 
 .technology-statement {
-  display: table;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: var(--shadow) 0 0 12px inset;
   margin: 2em -4em;
   padding: 0.5em 6em;
@@ -56,10 +60,6 @@ a:hover {
   font-size: 3.5em;
 }
 
-.boss-quote {
-  display: table-cell;
-  vertical-align: middle;
-}
 .boss-quote:before {
   content: "\275D\202F";
 }
@@ -82,6 +82,7 @@ a:hover {
 
 .controls {
   margin: 3em auto;
+  padding: 0 1rem;
   max-width: var(--width);
   color: white;
 }
@@ -127,6 +128,7 @@ a:hover {
 
 .footnotes {
   margin: 3em auto;
+  padding: 0 1rem;
   max-width: var(--width);
   /* darken(var(--primary), 10%) */
   color: #cc8800;
@@ -138,8 +140,8 @@ footer {
   border-top: #cc8800 1px solid;
   /* darken(var(--primary), 15%) */
   box-shadow: #b37700 0 2px 2px 0 inset;
-  margin: 0 -4em;
-  padding: 1em 0;
+  margin: 0;
+  padding: 1em;
   background-color: var(--complement);
   /* lighten(var(--complement), 50%) */
   color: #c3d3f9;
